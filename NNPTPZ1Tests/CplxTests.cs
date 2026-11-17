@@ -83,6 +83,25 @@ namespace NNPTPZ1.Mathematics.Tests
             var e2 = "(1 + 0i) + (0 + 0i)x + (1 + 0i)xx";
             Assert.AreEqual(e2, r2);
         }
+
+        [TestMethod()]
+        public void FindRootForLinearPolynomialReturnsZero()
+        {
+            Poly polynomial = new Poly();
+            polynomial.Coefficients.Add(new Cplx() { Real = 0 });
+            polynomial.Coefficients.Add(new Cplx() { Real = 1 });
+
+            Poly derivative = polynomial.Derive();
+            Cplx initialValue = new Cplx() { Real = 0.25, Imaginary = 0 };
+
+            int iterations;
+            Cplx actual = NewtonRootFinder.FindRoot(
+                polynomial, derivative, initialValue, out iterations);
+
+            Assert.AreEqual(0.0, actual.Real, 1e-12);
+            Assert.AreEqual(0.0f, actual.Imaginary, 1e-6f);
+            Assert.AreEqual(30, iterations);
+        }
     }
 }
 

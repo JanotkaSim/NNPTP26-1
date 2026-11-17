@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace NNPTPZ1
 {
 
-    class NewtonRootFinder
+    public static class NewtonRootFinder
     {
         private const int MaximumNewtonIterations = 30;
         private const double NewtonStepSquaredThreshold = 0.5;
